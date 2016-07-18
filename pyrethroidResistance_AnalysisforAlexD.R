@@ -40,7 +40,7 @@ anova(model_red1, model_red4, test = "Chisq")
 #Figure for publication
 LA_Freqs <- c(0.66, 0.56, 0.40, 0.44)
 TX_Freqs <- c(0.63, NA, 0.36, 0.36)
-RAD_Tag <- c(0.67, NA, 0.56, 0.3)
+RAD_Tag <- c(0.71, NA, 0.65, 0.5)
 Year <- c(1997, 2002, 2007, 2012)
 
 png(file = "Fig2_PyRes_Allele_Freq.png", units = "px", height = 800, width = 800)
