@@ -36,11 +36,65 @@ model_red4 <- glm(y ~ data$Year + data$EOL, binomial)#without location
 
 anova(model_red1, model_red4, test = "Chisq")
 
+#A better data format for plotting - LA first
+Counts <- c(rep(1, times = (94+35)), rep(0, times = (40+25)), rep(1, times = (58+56)), rep(0, times = (38+52)),
+  rep(1, times = (38+68)), rep(0, times = (66+96)), rep(1, times = (25+60)), rep(0, times = (25+84)))
+Year <- c(rep(1997,times = (94+35+40+25)), rep(2002, times = (58+56+38+52)), rep(2007, times = (38+68+66+96)), 
+  rep(2012, times = (25+25+60+84)))
+Loc <- rep("LA", times = length(Counts))
+
+LA_data <- data.frame(cbind(Counts, Year, Loc))
+LA_data$Counts <- as.numeric(as.character(LA_data$Counts))
+
+#now for TX data
+Counts <- c(rep(1, times = (7+83)), rep(0, times = (1+51)), rep(1, times = (43)), rep(0, times = (77)), rep(1, times = (7+63)), 
+  rep(0, times = (15+111)))
+Year <- c(rep(1997,times = (7+83+1+51)), rep(2007, times = (43+77)), rep(2012, times = (7+63+15+111)))
+Loc <- rep("TX", times = length(Counts))
+
+TX_data <- data.frame(cbind(Counts, Year, Loc))
+TX_data$Counts <- as.numeric(as.character(TX_data$Counts))
+
+#Finally RADtag data 
+Counts <- c(rep(1, times = 61), rep(0, times = 23), rep(1, times = 62), rep(0, times = 31), rep(1, times = 41),
+  rep(0, times = 41))
+Year <- c(rep(1997, times = (61+23)), rep(2007, times = (62+31)), rep(2012, times = (41+41)))
+Loc <- rep("RADtag", times = length(Counts))
+
+RADtag_data <- data.frame(cbind(Counts, Year, Loc))
+RADtag_data$Counts <- as.numeric(as.character(RADtag_data$Counts))
+
+
+#getting means and confidence intervals
+
+boot.fn.lower <- function(x=mean, N=5000) {
+  lower.1 <- replicate(N, mean(sample(x, size= length(x), replace=T)))
+  lower.CI <- quantile(lower.1, probs=c(0.025))
+  lower.CI
+}
+
+boot.fn.upper <- function(x=mean, N=5000) {
+  upper.1 <- replicate(N, mean(sample(x, size= length(x), replace=T)))
+  upper.CI <- quantile(upper.1, probs=c(0.975))
+  upper.CI
+
+LA_mean_freq <- tapply(LA_data$Counts, LA_data$Year, mean)
+LCI.obs <- tapply(LA_data$Counts, LA_data$Year, boot.fn.lower)
+LCI.obs
+
+UCI.obs <- tapply(LA_data$Counts, LA_data$Year, boot.fn.upper)
+UCI.obs
+
+
+library(gplots)
+
+plotCI(x = time, y = means, uiw = SE, add=T)
+
 
 #Figure for publication
 LA_Freqs <- c(0.66, 0.56, 0.40, 0.44)
 TX_Freqs <- c(0.63, NA, 0.36, 0.36)
-RAD_Tag <- c(0.71, NA, 0.65, 0.5)
+RAD_Tag <- c(0.73, NA, 0.66, 0.5)
 Year <- c(1997, 2002, 2007, 2012)
 
 png(file = "Fig2_PyRes_Allele_Freq.png", units = "px", height = 800, width = 800)
