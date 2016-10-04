@@ -55,6 +55,10 @@ Loc <- rep("TX", times = length(Counts))
 TX_data <- data.frame(cbind(Counts, Year, Loc))
 TX_data$Counts <- as.numeric(as.character(TX_data$Counts))
 
+#getting total counts
+Tot_data <- data.frame(rbind(LA_data, TX_data))
+
+
 #Finally RADtag data 
 Counts <- c(rep(1, times = 61), rep(0, times = 23), rep(1, times = 62), rep(0, times = 31), rep(1, times = 41),
   rep(0, times = 41))
@@ -77,18 +81,30 @@ boot.fn.upper <- function(x=mean, N=5000) {
   upper.1 <- replicate(N, mean(sample(x, size= length(x), replace=T)))
   upper.CI <- quantile(upper.1, probs=c(0.975))
   upper.CI
+}
 
-LA_mean_freq <- tapply(LA_data$Counts, LA_data$Year, mean)
-LCI.obs <- tapply(LA_data$Counts, LA_data$Year, boot.fn.lower)
+#getting Na channel gene res allele freq
+Tot_mean_freq <- tapply(Tot_data$Counts, Tot_data$Year, mean)
+LCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.lower)
 LCI.obs
 
-UCI.obs <- tapply(LA_data$Counts, LA_data$Year, boot.fn.upper)
+UCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.upper)
 UCI.obs
 
+#getting ddRAD-seq data
+RADtag_mean_freq <- tapply(RADtag_data$Counts, RADtag_data$Year, mean)
+LCI.obs <- tapply(RADtag_data$Counts, RADtag_data$Year, boot.fn.lower)
+LCI.obs
 
+UCI.obs <- tapply(RADtag_data$Counts, RADtag_data$Year, boot.fn.upper)
+UCI.obs
+
+Year <- c(1997, 2002, 2007, 2012)
+
+#Figure for pub
 library(gplots)
 
-plotCI(x = time, y = means, uiw = SE, add=T)
+plotCI(x = Year, y = means, uiw = SE, add=T)
 
 
 #Figure for publication
