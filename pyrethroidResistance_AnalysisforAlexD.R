@@ -36,6 +36,7 @@ model_red4 <- glm(y ~ data$Year + data$EOL, binomial)#without location
 
 anova(model_red1, model_red4, test = "Chisq")
 
+
 #A better data format for plotting - LA first
 Counts <- c(rep(1, times = (94+35)), rep(0, times = (40+25)), rep(1, times = (58+56)), rep(0, times = (38+52)),
   rep(1, times = (38+68)), rep(0, times = (66+96)), rep(1, times = (25+60)), rep(0, times = (25+84)))
@@ -85,11 +86,9 @@ boot.fn.upper <- function(x=mean, N=5000) {
 
 #getting Na channel gene res allele freq
 Tot_mean_freq <- tapply(Tot_data$Counts, Tot_data$Year, mean)
-LCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.lower)
-LCI.obs
+Tot_LCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.lower)
+Tot_UCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.upper)
 
-UCI.obs <- tapply(Tot_data$Counts, Tot_data$Year, boot.fn.upper)
-UCI.obs
 
 #getting ddRAD-seq data
 RADtag_mean_freq <- tapply(RADtag_data$Counts, RADtag_data$Year, mean)
@@ -99,29 +98,31 @@ LCI.obs
 UCI.obs <- tapply(RADtag_data$Counts, RADtag_data$Year, boot.fn.upper)
 UCI.obs
 
-Year <- c(1997, 2002, 2007, 2012)
+
+Year <- c(1997, 2002, 2007, 2012, 1997,2007,2012)
+All_means <- c(Tot_mean_freq, RADtag_mean_freq)
+Marker <- c("SNP","SNP","SNP","SNP","RADtag","RADtag","RADtag")
+UCI <- c(Tot_UCI.obs,UCI.obs)
+LCI <- c(Tot_LCI.obs,LCI.obs)
+
+All_data <- data.frame(cbind(Year,All_means,group,UCI,LCI))
+All_data$Year <- as.numeric(as.character(All_data$Year))
+All_data$All_means <- as.numeric(as.character(All_data$All_means))
+All_data$UCI <- as.numeric(as.character(All_data$UCI))
+All_data$LCI <- as.numeric(as.character(All_data$LCI))
+
 
 #Figure for pub
-library(gplots)
+library(ggplot2)
 
-plotCI(x = Year, y = means, uiw = SE, add=T)
-
-
-#Figure for publication
-LA_Freqs <- c(0.66, 0.56, 0.40, 0.44)
-TX_Freqs <- c(0.63, NA, 0.36, 0.36)
-RAD_Tag <- c(0.73, NA, 0.66, 0.5)
-Year <- c(1997, 2002, 2007, 2012)
-
-png(file = "Fig2_PyRes_Allele_Freq.png", units = "px", height = 800, width = 800)
+png(file = "Fig2_PyRes_Allele_Freq.png", units = "px", height = 800, width = 1200)
 par(mar = c(5,5,4,1))
-plot(Year,LA_Freqs, type = "l", ylim = c(0.1, 0.9), xaxt='n', lty = 1, lwd = 2, ylab = "Pyrethroid Resistance Allele Frequency", xlab = "Collection Year", cex.axis = 2, cex.lab = 2.5)
-axis(side = 1, at = c("1997", "2002", "2007", "2012"), cex.axis = 2)
-
-lines(Year, approx(TX_Freqs, xout=seq_along(TX_Freqs))$y, lty = 2, lwd = 2)#approximates missing 2002 value
-lines(Year, approx(RAD_Tag, xout=seq_along(RAD_Tag))$y, lty = 3, lwd = 2)#approximates missing 2002 value
-
-legend("topright", legend = c("LA", "TX", "RAD-seq Allele"), lty = c(1,2,3), cex = 2)
-
+ggplot(data = All_data, aes(x = Year, y = All_means, ymin = LCI, ymax = UCI, colour = Marker)) +
+    geom_line(aes(linetype=Marker), cex=2) +
+    geom_errorbar(position = position_dodge(width = 0.4), width = 0.3) +
+    scale_colour_manual(values = c("black", "red")) + ylab("Allele Frequency") +
+    theme_bw(base_size = 18) +
+    theme(panel.grid.major.y = element_line(colour = "white", linetype = "dashed"),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank(), legend.position="none", legend.key = element_blank(), axis.text=element_text(size=24, face= "bold"), axis.title = element_text(size=28, face= "bold"), axis.title.y = element_text(vjust = 0.3)) + scale_x_continuous(limit=c(1996,2014), breaks = seq(1996, 2014, 3)) + ylim(0.2,0.9)
 dev.off()
-
