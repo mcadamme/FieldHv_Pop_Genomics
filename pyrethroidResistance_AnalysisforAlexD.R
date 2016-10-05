@@ -56,7 +56,7 @@ Loc <- rep("TX", times = length(Counts))
 TX_data <- data.frame(cbind(Counts, Year, Loc))
 TX_data$Counts <- as.numeric(as.character(TX_data$Counts))
 
-#getting total counts
+#getting total counts for pyrethroid resistance allele
 Tot_data <- data.frame(rbind(LA_data, TX_data))
 
 
@@ -68,6 +68,7 @@ Loc <- rep("RADtag", times = length(Counts))
 
 RADtag_data <- data.frame(cbind(Counts, Year, Loc))
 RADtag_data$Counts <- as.numeric(as.character(RADtag_data$Counts))
+
 
 
 #getting means and confidence intervals
@@ -112,7 +113,7 @@ All_data$UCI <- as.numeric(as.character(All_data$UCI))
 All_data$LCI <- as.numeric(as.character(All_data$LCI))
 
 
-#Figure for pub
+#Figure2 for pub
 library(ggplot2)
 
 png(file = "Fig2_PyRes_Allele_Freq.png", units = "px", height = 800, width = 1200)
@@ -126,3 +127,22 @@ ggplot(data = All_data, aes(x = Year, y = All_means, ymin = LCI, ymax = UCI, col
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(), legend.position="none", legend.key = element_blank(), axis.text=element_text(size=24, face= "bold"), axis.title = element_text(size=28, face= "bold"), axis.title.y = element_text(vjust = 0.3)) + scale_x_continuous(limit=c(1996,2014), breaks = seq(1996, 2014, 3)) + ylim(0.2,0.9)
 dev.off()
+
+#Test for differences between slopes - resistance allele and hv_11322_hap1
+
+#first combining datasets
+Tot_data$MarkerType <- rep("PYR", times = nrow(Tot_data))
+RADtag_data$MarkerType <- rep("RAD", times = nrow(RADtag_data))
+
+RADpPYR <- rbind(Tot_data, RADtag_data)
+
+#model 1 with interaction term
+mod1 <- glm(RADpPYR$Counts ~ RADpPYR$Year + RADpPYR$MarkerType + RADpPYR$Year*RADpPYR$MarkerType, binomial)
+
+#model 2 without interaction term
+mod2 <- glm(RADpPYR$Counts ~ RADpPYR$Year + RADpPYR$MarkerType, binomial)
+
+#test for significance
+anova(mod1, mod2, test = "Chisq")
+
+
