@@ -106,7 +106,7 @@ Marker <- c("SNP","SNP","SNP","SNP","RADtag","RADtag","RADtag")
 UCI <- c(Tot_UCI.obs,UCI.obs)
 LCI <- c(Tot_LCI.obs,LCI.obs)
 
-All_data <- data.frame(cbind(Year,All_means,group,UCI,LCI))
+All_data <- data.frame(cbind(Year,All_means,Marker,UCI,LCI))
 All_data$Year <- as.numeric(as.character(All_data$Year))
 All_data$All_means <- as.numeric(as.character(All_data$All_means))
 All_data$UCI <- as.numeric(as.character(All_data$UCI))
@@ -135,6 +135,9 @@ Tot_data$MarkerType <- rep("PYR", times = nrow(Tot_data))
 RADtag_data$MarkerType <- rep("RAD", times = nrow(RADtag_data))
 
 RADpPYR <- rbind(Tot_data, RADtag_data)
+RADpPYR$Year <- as.numeric(as.character(RADpPYR$Year))
+
+str(RADpPYR)
 
 #model 1 with interaction term
 mod1 <- glm(RADpPYR$Counts ~ RADpPYR$Year + RADpPYR$MarkerType + RADpPYR$Year*RADpPYR$MarkerType, binomial)
