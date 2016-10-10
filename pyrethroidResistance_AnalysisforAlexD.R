@@ -1,4 +1,4 @@
-#This is my code to analyze my pyrethroid resistance allele frequencies over time.
+#This is my code to analyze my pyrethroid resistance allele frequency and its association with alinked haplotypes over time.
 
 setwd("~/Downloads") #tells R where to find the file - you may have to change this.
 
@@ -147,5 +147,18 @@ mod2 <- glm(RADpPYR$Counts ~ RADpPYR$Year + RADpPYR$MarkerType, binomial)
 
 #test for significance
 anova(mod1, mod2, test = "Chisq")
+
+##My code for the exact test - to look for associations between the resistance allele and Hv_11322_hap1
+
+Exact_test_data <-
+matrix(c(29,5,1,23),
+       nrow = 2,
+       dimnames =
+       list(c("Hap11322", "NotHap11322"),
+            c("R", "S")))
+Exact_test_data
+fisher.test(Exact_test_data, alternative = "less")
+
+
 
 
