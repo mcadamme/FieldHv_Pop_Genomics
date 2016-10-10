@@ -157,7 +157,7 @@ matrix(c(29,5,1,23),
        list(c("Hap11322", "NotHap11322"),
             c("R", "S")))
 Exact_test_data
-fisher.test(Exact_test_data, alternative = "less")
+fisher.test(Exact_test_data, alternative = "two.sided")
 
 
 
