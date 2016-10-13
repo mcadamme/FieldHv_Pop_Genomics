@@ -1,0 +1,45 @@
+#running vcftools to filter and get pop stats.
+
+cd ~/temp/bowtie_output/samtoolsANDvcftools_output
+
+#first looking only at Contig4600 (with NaNhp) with some filtering
+vcftools --vcf FieldHvir.vcf --keep 1997_samples.txt --out ./contig4600_only/FieldHvir1997 --chr Contig4600 --minDP 3 --freq
+vcftools --vcf FieldHvir.vcf --keep 1997_samples.txt --out ./contig4600_only/FieldHvir1997 --chr Contig4600 --minDP 3 --site-mean-depth
+vcftools --vcf FieldHvir.vcf --keep 1997_samples.txt --out ./contig4600_only/FieldHvir1997 --chr Contig4600 --minDP 3 --geno-depth
+
+vcftools --vcf FieldHvir.vcf --keep 2007_samples.txt --out ./contig4600_only/FieldHvir2007 --chr Contig4600 --minDP 3 --freq
+vcftools --vcf FieldHvir.vcf --keep 2007_samples.txt --out ./contig4600_only/FieldHvir2007 --chr Contig4600 --minDP 3 --site-mean-depth
+vcftools --vcf FieldHvir.vcf --keep 2007_samples.txt --out ./contig4600_only/FieldHvir2007 --chr Contig4600 --minDP 3 --geno-depth
+
+vcftools --vcf FieldHvir.vcf --keep 2012_samples.txt --out ./contig4600_only/FieldHvir2012 --chr Contig4600 --minDP 3 --freq
+vcftools --vcf FieldHvir.vcf --keep 2012_samples.txt --out ./contig4600_only/FieldHvir2012 --chr Contig4600 --minDP 3 --site-mean-depth
+vcftools --vcf FieldHvir.vcf --keep 2012_samples.txt --out ./contig4600_only/FieldHvir2012 --chr Contig4600 --minDP 3 --geno-depth
+
+#Now filtering all data
+vcftools --vcf FieldHvir.vcf --out Filtered_FieldHvir --recode --minDP 3 --maf 0.1 --max-missing 0.5 --remove-indels
+
+#1997 samples
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --freq
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-pi
+
+#2007 samples
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --freq
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-pi
+
+#2012 samples
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --freq
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-pi
+
+
+#run of fst outlier test - per site
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 1997and2007 --weir-fst-pop 1997_samples.txt --weir-fst-pop 2007_samples.txt
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 2007and2012 --weir-fst-pop 2007_samples.txt --weir-fst-pop 2012_samples.txt
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 1997and2012 --weir-fst-pop 1997_samples.txt --weir-fst-pop 2012_samples.txt
+
+#with sliding window
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 1997and2007_slide --weir-fst-pop 1997_samples.txt --weir-fst-pop 2007_samples.txt --fst-window-size 5000 --fst-window-step 1000
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 1997and2012_slide --weir-fst-pop 1997_samples.txt --weir-fst-pop 2012_samples.txt --fst-window-size 5000 --fst-window-step 1000
+vcftools --vcf Filtered_FieldHvir.recode.vcf --out 2007and2012_slide --weir-fst-pop 2007_samples.txt --weir-fst-pop 2012_samples.txt --fst-window-size 5000 --fst-window-step 1000
