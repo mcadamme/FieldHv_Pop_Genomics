@@ -1,0 +1,195 @@
+#! /bin/bash
+
+#shell script for running bowtie2 on my samples, and aligning them to the unmasked Hv draft genome.
+
+cd ~/temp
+
+#LA1997 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_10.fq -S ./bowtie_output/LA1997_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_11.fq -S ./bowtie_output/LA1997_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_12.fq -S ./bowtie_output/LA1997_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_13.fq -S ./bowtie_output/LA1997_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_14.fq -S ./bowtie_output/LA1997_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_15.fq -S ./bowtie_output/LA1997_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_16.fq -S ./bowtie_output/LA1997_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_17.fq -S ./bowtie_output/LA1997_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_18.fq -S ./bowtie_output/LA1997_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_19.fq -S ./bowtie_output/LA1997_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_1.fq -S ./bowtie_output/LA1997_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_20.fq -S ./bowtie_output/LA1997_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_21.fq -S ./bowtie_output/LA1997_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_22.fq -S ./bowtie_output/LA1997_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_23.fq -S ./bowtie_output/LA1997_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_24.fq -S ./bowtie_output/LA1997_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_25.fq -S ./bowtie_output/LA1997_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_26.fq -S ./bowtie_output/LA1997_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_27.fq -S ./bowtie_output/LA1997_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_28.fq -S ./bowtie_output/LA1997_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_29.fq -S ./bowtie_output/LA1997_29.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_2.fq -S ./bowtie_output/LA1997_2.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_30.fq -S ./bowtie_output/LA1997_30.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_3.fq -S ./bowtie_output/LA1997_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_4.fq -S ./bowtie_output/LA1997_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_5.fq -S ./bowtie_output/LA1997_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_6.fq -S ./bowtie_output/LA1997_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_7.fq -S ./bowtie_output/LA1997_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_8.fq -S ./bowtie_output/LA1997_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/LA1997_9.fq -S ./bowtie_output/LA1997_9.sam --end-to-end --very-sensitive --no-unal
+
+#TX1997 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_10.fq -S ./bowtie_output/TX1997_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_11.fq -S ./bowtie_output/TX1997_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_12.fq -S ./bowtie_output/TX1997_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_13.fq -S ./bowtie_output/TX1997_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_14.fq -S ./bowtie_output/TX1997_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_15.fq -S ./bowtie_output/TX1997_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_16.fq -S ./bowtie_output/TX1997_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_17.fq -S ./bowtie_output/TX1997_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_18.fq -S ./bowtie_output/TX1997_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_19.fq -S ./bowtie_output/TX1997_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_1.fq -S ./bowtie_output/TX1997_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_20.fq -S ./bowtie_output/TX1997_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_21.fq -S ./bowtie_output/TX1997_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_22.fq -S ./bowtie_output/TX1997_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_23.fq -S ./bowtie_output/TX1997_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_24.fq -S ./bowtie_output/TX1997_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_25.fq -S ./bowtie_output/TX1997_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_26.fq -S ./bowtie_output/TX1997_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_27.fq -S ./bowtie_output/TX1997_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_28.fq -S ./bowtie_output/TX1997_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_29.fq -S ./bowtie_output/TX1997_29.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_2.fq -S ./bowtie_output/TX1997_2.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_3.fq -S ./bowtie_output/TX1997_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_4.fq -S ./bowtie_output/TX1997_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_5.fq -S ./bowtie_output/TX1997_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_6.fq -S ./bowtie_output/TX1997_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_7.fq -S ./bowtie_output/TX1997_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_8.fq -S ./bowtie_output/TX1997_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_1997/TX1997_9.fq -S ./bowtie_output/TX1997_9.sam --end-to-end --very-sensitive --no-unal
+
+#LA2007 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_10.fq -S ./bowtie_output/LA2007_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_11.fq -S ./bowtie_output/LA2007_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_12.fq -S ./bowtie_output/LA2007_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_13.fq -S ./bowtie_output/LA2007_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_14.fq -S ./bowtie_output/LA2007_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_15.fq -S ./bowtie_output/LA2007_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_16.fq -S ./bowtie_output/LA2007_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_17.fq -S ./bowtie_output/LA2007_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_18.fq -S ./bowtie_output/LA2007_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_19.fq -S ./bowtie_output/LA2007_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_1.fq -S ./bowtie_output/LA2007_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_20.fq -S ./bowtie_output/LA2007_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_21.fq -S ./bowtie_output/LA2007_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_22.fq -S ./bowtie_output/LA2007_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_23.fq -S ./bowtie_output/LA2007_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_24.fq -S ./bowtie_output/LA2007_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_25.fq -S ./bowtie_output/LA2007_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_26.fq -S ./bowtie_output/LA2007_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_27.fq -S ./bowtie_output/LA2007_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_28.fq -S ./bowtie_output/LA2007_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_29.fq -S ./bowtie_output/LA2007_29.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_2.fq -S ./bowtie_output/LA2007_2.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_30.fq -S ./bowtie_output/LA2007_30.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_3.fq -S ./bowtie_output/LA2007_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_4.fq -S ./bowtie_output/LA2007_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_5.fq -S ./bowtie_output/LA2007_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_6.fq -S ./bowtie_output/LA2007_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_7.fq -S ./bowtie_output/LA2007_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_8.fq -S ./bowtie_output/LA2007_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/LA2007_9.fq -S ./bowtie_output/LA2007_9.sam --end-to-end --very-sensitive --no-unal
+
+#TX2007 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_10.fq -S ./bowtie_output/TX2007_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_11.fq -S ./bowtie_output/TX2007_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_12.fq -S ./bowtie_output/TX2007_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_13.fq -S ./bowtie_output/TX2007_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_14.fq -S ./bowtie_output/TX2007_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_15.fq -S ./bowtie_output/TX2007_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_16.fq -S ./bowtie_output/TX2007_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_17.fq -S ./bowtie_output/TX2007_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_18.fq -S ./bowtie_output/TX2007_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_19.fq -S ./bowtie_output/TX2007_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_1.fq -S ./bowtie_output/TX2007_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_20.fq -S ./bowtie_output/TX2007_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_21.fq -S ./bowtie_output/TX2007_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_22.fq -S ./bowtie_output/TX2007_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_23.fq -S ./bowtie_output/TX2007_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_24.fq -S ./bowtie_output/TX2007_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_25.fq -S ./bowtie_output/TX2007_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_26.fq -S ./bowtie_output/TX2007_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_27.fq -S ./bowtie_output/TX2007_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_28.fq -S ./bowtie_output/TX2007_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_2.fq -S ./bowtie_output/TX2007_2.sam --end-to-end --very-sensitive --no-unal  
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_3.fq -S ./bowtie_output/TX2007_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_4.fq -S ./bowtie_output/TX2007_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_5.fq -S ./bowtie_output/TX2007_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_6.fq -S ./bowtie_output/TX2007_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_7.fq -S ./bowtie_output/TX2007_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_8.fq -S ./bowtie_output/TX2007_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2007/TX2007_9.fq -S ./bowtie_output/TX2007_9.sam --end-to-end --very-sensitive --no-unal
+
+#LA2012 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_10.fq -S ./bowtie_output/LA2012_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_11.fq -S ./bowtie_output/LA2012_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_12.fq -S ./bowtie_output/LA2012_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_13.fq -S ./bowtie_output/LA2012_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_14.fq -S ./bowtie_output/LA2012_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_15.fq -S ./bowtie_output/LA2012_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_16.fq -S ./bowtie_output/LA2012_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_17.fq -S ./bowtie_output/LA2012_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_18.fq -S ./bowtie_output/LA2012_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_19.fq -S ./bowtie_output/LA2012_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_1.fq -S ./bowtie_output/LA2012_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_20.fq -S ./bowtie_output/LA2012_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_21.fq -S ./bowtie_output/LA2012_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_22.fq -S ./bowtie_output/LA2012_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_23.fq -S ./bowtie_output/LA2012_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_24.fq -S ./bowtie_output/LA2012_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_25.fq -S ./bowtie_output/LA2012_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_26.fq -S ./bowtie_output/LA2012_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_27.fq -S ./bowtie_output/LA2012_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_28.fq -S ./bowtie_output/LA2012_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_29.fq -S ./bowtie_output/LA2012_29.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_2.fq -S ./bowtie_output/LA2012_2.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_30.fq -S ./bowtie_output/LA2012_30.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_3.fq -S ./bowtie_output/LA2012_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_4.fq -S ./bowtie_output/LA2012_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_5.fq -S ./bowtie_output/LA2012_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_6.fq -S ./bowtie_output/LA2012_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_7.fq -S ./bowtie_output/LA2012_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_8.fq -S ./bowtie_output/LA2012_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/LA2012_9.fq -S ./bowtie_output/LA2012_9.sam --end-to-end --very-sensitive --no-unal
+
+#TX2012 samples
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_10.fq -S ./bowtie_output/TX2012_10.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_11.fq -S ./bowtie_output/TX2012_11.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_12.fq -S ./bowtie_output/TX2012_12.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_13.fq -S ./bowtie_output/TX2012_13.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_14.fq -S ./bowtie_output/TX2012_14.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_15.fq -S ./bowtie_output/TX2012_15.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_16.fq -S ./bowtie_output/TX2012_16.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_17.fq -S ./bowtie_output/TX2012_17.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_18.fq -S ./bowtie_output/TX2012_18.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_19.fq -S ./bowtie_output/TX2012_19.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_1.fq -S ./bowtie_output/TX2012_1.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_20.fq -S ./bowtie_output/TX2012_20.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_21.fq -S ./bowtie_output/TX2012_21.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_22.fq -S ./bowtie_output/TX2012_22.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_23.fq -S ./bowtie_output/TX2012_23.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_24.fq -S ./bowtie_output/TX2012_24.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_25.fq -S ./bowtie_output/TX2012_25.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_26.fq -S ./bowtie_output/TX2012_26.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_27.fq -S ./bowtie_output/TX2012_27.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_28.fq -S ./bowtie_output/TX2012_28.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_29.fq -S ./bowtie_output/TX2012_29.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_2.fq -S ./bowtie_output/TX2012_2.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_30.fq -S ./bowtie_output/TX2012_30.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_3.fq -S ./bowtie_output/TX2012_3.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_4.fq -S ./bowtie_output/TX2012_4.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_5.fq -S ./bowtie_output/TX2012_5.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_6.fq -S ./bowtie_output/TX2012_6.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_7.fq -S ./bowtie_output/TX2012_7.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_8.fq -S ./bowtie_output/TX2012_8.sam --end-to-end --very-sensitive --no-unal
+bowtie2 -x ./genome/bowtie2_build/Hvir -q ./samples_2012/TX2012_9.fq -S ./bowtie_output/TX2012_9.sam --end-to-end --very-sensitive --no-unal
+
