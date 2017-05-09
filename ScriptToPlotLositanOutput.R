@@ -55,6 +55,7 @@ sub_GTF <- GTF[,c(1,4,5,13)]
 Hv1997thru2012 <- read.table("FieldHvirReduced_Fst_1997thru2012.txt", header = T)
 Hv1997thru2012 <- cbind(Hv1997thru2012,snp_code)
 sub_Hv1997thru2012 <- subset(Hv1997thru2012, Pval >= 0.99)
+write.table(sub_Hv1997thru2012, file = "SNPOutliers_Hv1997thru2012.txt")
 uniqContigs_1997thr2012 <- unique(sub_Hv1997thru2012$Contig)
 length(uniqContigs_1997thr2012)
 
@@ -62,6 +63,7 @@ length(uniqContigs_1997thr2012)
 Hv1997thru2007 <- read.table("FieldHvirReduced_Fst_1997thru2007.txt", header = T)
 Hv1997thru2007 <- cbind(Hv1997thru2007, snp_code)
 sub_Hv1997thru2007 <- subset(Hv1997thru2007, Pval >= 0.99)
+write.table(sub_Hv1997thru2007, file = "SNPOutliers_Hv1997thru2007.txt")
 uniqContigs_1997thru2007 <- unique(sub_Hv1997thru2007$Contig)
 length(uniqContigs_1997thru2007)
 
@@ -69,6 +71,7 @@ length(uniqContigs_1997thru2007)
 Hv2007thru2012 <- read.table("FieldHvirReduced_Fst_2007thru2012.txt", header = T)
 Hv2007thru2012 <- cbind(Hv2007thru2012, snp_code)
 sub_Hv2007thru2012 <- subset(Hv2007thru2012, Pval >= 0.99)
+write.table(sub_Hv2007thru2012, file = "SNPOutliers_Hv2007thru2012.txt")
 uniqContigs_2007thru2012 <- unique(sub_Hv2007thru2012$Contig)
 length(uniqContigs_2007thru2012)
 
@@ -95,22 +98,68 @@ dev.off()
 #merging significant SNPs with GO terms
 merged_sig_1997thru2012 <- merge(sub_Hv1997thru2012, sub_GTF, by = "Contig")
 merged_sig_1997thru2007 <- merge(sub_Hv1997thru2007, sub_GTF, by = "Contig")
-merged_sig_2007thru2012 <- merge(sub_Hv2007thru2007, sub_GTF, by = "Contig")
+merged_sig_2007thru2012 <- merge(sub_Hv2007thru2012, sub_GTF, by = "Contig")
 
 #Getting genes within 10kb of SNP outliers
 #1997thru2012
 subLow_merged_sig_1997thru2012 <- subset(merged_sig_1997thru2012, StartPos.y > merged_sig_1997thru2012$StartPos.x - 10000)
 suball_merged_sig_1997thru2012 <- subset(subLow_merged_sig_1997thru2012, StartPos.y < subLow_merged_sig_1997thru2012$StartPos.x + 10000)
-write.table(suball_merged_sig_1997thru2012, file = "JamgModels_forSigSNPs_1997thru2012.txt")
+write.table(suball_merged_sig_1997thru2012, file = "JamgModels_forSigSNPs_10kb_1997thru2012.txt", row.names = F)
 
 #1997thru2007
 subLow_merged_sig_1997thru2007 <- subset(merged_sig_1997thru2007, StartPos.y > merged_sig_1997thru2007$StartPos.x - 10000)
 suball_merged_sig_1997thru2007 <- subset(subLow_merged_sig_1997thru2007, StartPos.y < subLow_merged_sig_1997thru2007$StartPos.x + 10000)
-write.table(suball_merged_sig_1997thru2007, file = "JamgModels_forSigSNPs_1997thru2007.txt")
+write.table(suball_merged_sig_1997thru2007, file = "JamgModels_forSigSNPs_10kb_1997thru2007.txt", row.names = F)
 
 #2007thru2012
 subLow_merged_sig_2007thru2012 <- subset(merged_sig_2007thru2012, StartPos.y > merged_sig_2007thru2012$StartPos.x - 10000)
 suball_merged_sig_2007thru2012 <- subset(subLow_merged_sig_2007thru2012, StartPos.y < subLow_merged_sig_2007thru2012$StartPos.x + 10000)
-write.table(suball_merged_sig_2007thru2012, file = "JamgModels_forSigSNPs_2007thru2012.txt")
+write.table(suball_merged_sig_2007thru2012, file = "JamgModels_forSigSNPs_10kb_2007thru2012.txt", row.names = F)
 
+#Getting genes within 20kb of SNP outliers
+#1997thru2012
+subLow_merged_sig_1997thru2012 <- subset(merged_sig_1997thru2012, StartPos.y > merged_sig_1997thru2012$StartPos.x - 20000)
+suball_merged_sig_1997thru2012 <- subset(subLow_merged_sig_1997thru2012, StartPos.y < subLow_merged_sig_1997thru2012$StartPos.x + 20000)
+write.table(suball_merged_sig_1997thru2012, file = "JamgModels_forSigSNPs_20kb_1997thru2012.txt", row.names = F)
 
+#1997thru2007
+subLow_merged_sig_1997thru2007 <- subset(merged_sig_1997thru2007, StartPos.y > merged_sig_1997thru2007$StartPos.x - 20000)
+suball_merged_sig_1997thru2007 <- subset(subLow_merged_sig_1997thru2007, StartPos.y < subLow_merged_sig_1997thru2007$StartPos.x + 20000)
+write.table(suball_merged_sig_1997thru2007, file = "JamgModels_forSigSNPs_20kb_1997thru2007.txt", row.names = F)
+
+#2007thru2012
+subLow_merged_sig_2007thru2012 <- subset(merged_sig_2007thru2012, StartPos.y > merged_sig_2007thru2012$StartPos.x - 20000)
+suball_merged_sig_2007thru2012 <- subset(subLow_merged_sig_2007thru2012, StartPos.y < subLow_merged_sig_2007thru2012$StartPos.x + 20000)
+write.table(suball_merged_sig_2007thru2012, file = "JamgModels_forSigSNPs_20kb_2007thru2012.txt", row.names = F)
+
+#Getting genes within 30kb of SNP outliers
+#1997thru2012
+subLow_merged_sig_1997thru2012 <- subset(merged_sig_1997thru2012, StartPos.y > merged_sig_1997thru2012$StartPos.x - 30000)
+suball_merged_sig_1997thru2012 <- subset(subLow_merged_sig_1997thru2012, StartPos.y < subLow_merged_sig_1997thru2012$StartPos.x + 30000)
+write.table(suball_merged_sig_1997thru2012, file = "JamgModels_forSigSNPs_30kb_1997thru2012.txt", row.names = F)
+
+#1997thru2007
+subLow_merged_sig_1997thru2007 <- subset(merged_sig_1997thru2007, StartPos.y > merged_sig_1997thru2007$StartPos.x - 30000)
+suball_merged_sig_1997thru2007 <- subset(subLow_merged_sig_1997thru2007, StartPos.y < subLow_merged_sig_1997thru2007$StartPos.x + 30000)
+write.table(suball_merged_sig_1997thru2007, file = "JamgModels_forSigSNPs_30kb_1997thru2007.txt", row.names = F)
+
+#2007thru2012
+subLow_merged_sig_2007thru2012 <- subset(merged_sig_2007thru2012, StartPos.y > merged_sig_2007thru2012$StartPos.x - 30000)
+suball_merged_sig_2007thru2012 <- subset(subLow_merged_sig_2007thru2012, StartPos.y < subLow_merged_sig_2007thru2012$StartPos.x + 30000)
+write.table(suball_merged_sig_2007thru2012, file = "JamgModels_forSigSNPs_30kb_2007thru2012.txt", row.names = F)
+
+#Getting genes within 36kb of SNP outliers
+#1997thru2012
+subLow_merged_sig_1997thru2012 <- subset(merged_sig_1997thru2012, StartPos.y > merged_sig_1997thru2012$StartPos.x - 36000)
+suball_merged_sig_1997thru2012 <- subset(subLow_merged_sig_1997thru2012, StartPos.y < subLow_merged_sig_1997thru2012$StartPos.x + 36000)
+write.table(suball_merged_sig_1997thru2012, file = "JamgModels_forSigSNPs_36kb_1997thru2012.txt", row.names = F)
+
+#1997thru2007
+subLow_merged_sig_1997thru2007 <- subset(merged_sig_1997thru2007, StartPos.y > merged_sig_1997thru2007$StartPos.x - 36000)
+suball_merged_sig_1997thru2007 <- subset(subLow_merged_sig_1997thru2007, StartPos.y < subLow_merged_sig_1997thru2007$StartPos.x + 36000)
+write.table(suball_merged_sig_1997thru2007, file = "JamgModels_forSigSNPs_36kb_1997thru2007.txt", row.names = F)
+
+#2007thru2012
+subLow_merged_sig_2007thru2012 <- subset(merged_sig_2007thru2012, StartPos.y > merged_sig_2007thru2012$StartPos.x - 36000)
+suball_merged_sig_2007thru2012 <- subset(subLow_merged_sig_2007thru2012, StartPos.y < subLow_merged_sig_2007thru2012$StartPos.x + 36000)
+write.table(suball_merged_sig_2007thru2012, file = "JamgModels_forSigSNPs_36kb_2007thru2012.txt", row.names = F)
