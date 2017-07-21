@@ -7,15 +7,36 @@ library(scatterplot3d)
 Dom.Sel.Coef = function (q.1, q.2, g) {
   delta.q = (q.1-q.2)/g
   s = (delta.q)/((q.1^2)*(q.1+delta.q-1))
-  dom.plot <- scatterplot3d(delta.q,q.1,abs(s),highlight.3d = TRUE, col.axis = "blue",
-                            col.grid = "lightblue", pch = 20)
- print(dom.plot)
+}
+
+#To plot selection coefficient assuming dominance of p
+plot.Dom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
+  delta.q = (q.1-q.2)/g
+  df.name <- deparse(substitute(dataframe))
+  png(file = print(paste0(df.name,"Dom.png")), units = "px", height = 600, width = 900)
+  scatterplot3d(delta.q, q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
+                cex = 2.5, cex.axis = 1.5, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
+                main = "Dominance of p", xlab = "Delta q", ylab = "", 
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.75))
+ dev.off()
 }
 
 #function for selection coefficint assuming no dominance of p
 NoDom.Sel.Coef = function (q.1, q.2, g) {
   delta.q = (q.1-q.2)/g
   s = (delta.q)/(q.1 *(0.5*q.1+delta.q-0.5))
+}
+
+#To plot selection coefficient assuming Co-dominance of p & q
+plot.NoDom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
+  delta.q = (q.1-q.2)/g
+  df.name <- deparse(substitute(dataframe))
+  png(file = print(paste0(df.name,"NoDom.png")), units = "px", height = 600, width = 900)
+  scatterplot3d(delta.q, q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
+                cex = 2.5, cex.axis = 1.5, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
+                main = "Co-dominance of p and q", xlab = "Delta q", ylab = "",
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.75))
+  dev.off()
 }
 
 setwd("~/temp/bowtie_output/samtoolsANDvcftools_output/LositanReducedDataset_03292017/Allele_Frequencies_by_year")
@@ -31,7 +52,8 @@ sub_Hv1997thru2007 <- read.table("SNPOutliers_Hv1997thru2007.txt", header = T)
 sub_Hv2007thru2012 <- read.table("SNPOutliers_Hv2007thru2012.txt", header = T)
 
 #Pulling out frequencies for divergent loci
-#1997thru2012
+
+########1997thru2012
 merged_Hv1997 <- merge(sub_Hv1997thru2012, Freqs1997, by = c("Contig","StartPos"))
 merged_Hv1997$Year <- rep("1997", times = nrow(merged_Hv1997))
 merged_Hv2012 <- merge(sub_Hv1997thru2012, Freqs2012, by = c("Contig","StartPos"))
@@ -54,25 +76,31 @@ g = (2012-1997)*4 #60 generations
 
 #removing the few situations where starting allele frequencies are zero, 
 #which is unrealistic and inflates s.
-sub1_nozeroes <- subset(sub1, Ancest_Freq.1997 > 0)#removes 2 samples
-sub2_nozeroes <- subset(sub2, Alt_Freq.1997 > 0)#removes 12 samples
-
-#starting with assumption of dominance
-sub1_nozeroes$dom_sel_coef_1997thru2012 <- Dom.Sel.Coef(sub1_nozeroes$Alt_Freq.1997,sub1_nozeroes$Alt_Freq.2012,g)
-sub2_nozeroes$dom_sel_coef_1997thru2012 <- Dom.Sel.Coef(sub2_nozeroes$Ancest_Freq.1997,sub2_nozeroes$Ancest_Freq.2012,g)
-
-#no dominance
-sub1_nozeroes$nd_sel_coef_1997thru2012 <- NoDom.Sel.Coef(sub1_nozeroes$Alt_Freq.1997,sub1_nozeroes$Alt_Freq.2012,g)
-sub2_nozeroes$nd_sel_coef_1997thru2012 <- NoDom.Sel.Coef(sub2_nozeroes$Ancest_Freq.1997,sub2_nozeroes$Ancest_Freq.2012,g)
-
+sub1_nozeroes <- data.frame(subset(sub1, Ancest_Freq.1997 > 0.05))
+sub2_nozeroes <- data.frame(subset(sub2, Alt_Freq.1997 > 0.05))
 
 Full_SelCoef_Hv1997thru2012 <- rbind(sub1_nozeroes, sub2_nozeroes)
+Full_SelCoef_Hv1997thru2012$q.1 <- c(sub1_nozeroes$Alt_Freq.1997, sub2_nozeroes$Ancest_Freq.1997)
+Full_SelCoef_Hv1997thru2012$q.2 <- c(sub1_nozeroes$Alt_Freq.2012, sub2_nozeroes$Ancest_Freq.2012)
 
-#getting a vector of q.1
-Full_SelCoef_Hv1997thru2012$q.1_1997thru2012 <- c(sub1_nozeroes$Alt_Freq.1997,sub2_nozeroes$Ancest_Freq.1997)
+#starting with assumption of dominance
+Full_SelCoef_Hv1997thru2012$dom_sel_coef <- Dom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g)
+plot.Dom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g,Full_SelCoef_Hv1997thru2012$dom_sel_coef,Full_SelCoef_Hv1997thru2012)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
+sd(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
+
+#No dominance
+Full_SelCoef_Hv1997thru2012$nodom_sel_coef <- NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g)
+plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g,Full_SelCoef_Hv1997thru2012$nodom_sel_coef,Full_SelCoef_Hv1997thru2012)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
+sd(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
 
 
-#1997thru2007
+########1997thru2007
 merged_Hv1997 <- merge(sub_Hv1997thru2007, Freqs1997, by = c("Contig","StartPos"))
 merged_Hv1997$Year <- rep("1997", times = nrow(merged_Hv1997))
 merged_Hv2007 <- merge(sub_Hv1997thru2007, Freqs2007, by = c("Contig","StartPos"))
@@ -91,24 +119,35 @@ reshaped_Hv1997thru2007$Diff_Alt_Freq <- reshaped_Hv1997thru2007$Alt_Freq.2007-r
 sub1 <- subset(reshaped_Hv1997thru2007, Diff_Ancest_Freq > 0)
 sub2 <- subset(reshaped_Hv1997thru2007, Diff_Alt_Freq > 0)
 
+
 g = (2007-1997)*4 #40 generations
 
-#starting with assumption of dominance
-sub1$dom_sel_coef_1997thru2007 <- Dom.Sel.Coef(sub1$Alt_Freq.1997,sub1$Alt_Freq.2007,g)
-sub2$dom_sel_coef_1997thru2007 <- Dom.Sel.Coef(sub2$Ancest_Freq.1997,sub2$Ancest_Freq.2007,g)
-
-#no dominance
-sub1$nd_sel_coef_1997thru2007 <- NoDom.Sel.Coef(sub1$Alt_Freq.1997,sub1$Alt_Freq.2007,g)
-sub2$nd_sel_coef_1997thru2007 <- NoDom.Sel.Coef(sub2$Ancest_Freq.1997,sub2$Ancest_Freq.2007,g)
-
-#removing the few situations where starting allele frequencies are zero, 
-#which is unrealistic and inflates s.
-sub1_nozeroes <- subset(sub1, Ancest_Freq.1997 > 0)#removes 1 sample
-sub2_nozeroes <- subset(sub2, Alt_Freq.1997 > 0)#removes 11 samples
+sub1_nozeroes <- data.frame(subset(sub1, Ancest_Freq.1997 > 0.05))
+sub2_nozeroes <- data.frame(subset(sub2, Alt_Freq.1997 > 0.05))
 
 Full_SelCoef_Hv1997thru2007 <- rbind(sub1_nozeroes, sub2_nozeroes)
+Full_SelCoef_Hv1997thru2007$q.1 <- c(sub1_nozeroes$Alt_Freq.1997, sub2_nozeroes$Ancest_Freq.1997)
+Full_SelCoef_Hv1997thru2007$q.2 <- c(sub1_nozeroes$Alt_Freq.2007, sub2_nozeroes$Ancest_Freq.2007)
 
-#2007thru2012
+#starting with assumption of dominance
+Full_SelCoef_Hv1997thru2007$dom_sel_coef <- Dom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g)
+plot.Dom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g,Full_SelCoef_Hv1997thru2007$dom_sel_coef,Full_SelCoef_Hv1997thru2007)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
+sd(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
+
+
+#No dominance
+Full_SelCoef_Hv1997thru2007$nodom_sel_coef <- NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g)
+plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g,Full_SelCoef_Hv1997thru2007$nodom_sel_coef,Full_SelCoef_Hv1997thru2007)
+
+##Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
+sd(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
+
+
+########2007thru2012
 merged_Hv2007 <- merge(sub_Hv2007thru2012, Freqs2007, by = c("Contig","StartPos"))
 merged_Hv2007$Year <- rep("2007", times = nrow(merged_Hv2007))
 merged_Hv2012 <- merge(sub_Hv2007thru2012, Freqs2012, by = c("Contig","StartPos"))
@@ -129,20 +168,25 @@ sub2 <- subset(reshaped_Hv2007thru2012, Diff_Alt_Freq > 0)
 
 g = (2012-2007)*4 #20 generations
 
-#starting with assumption of dominance
-sub1$dom_sel_coef_2007thru2012 <- Dom.Sel.Coef(sub1$Alt_Freq.2007,sub1$Alt_Freq.2012,g)
-sub2$dom_sel_coef_2007thru2012 <- Dom.Sel.Coef(sub2$Ancest_Freq.2007,sub2$Ancest_Freq.2012,g)
-
-#no dominance
-sub1$nd_sel_coef_2007thru2012 <- NoDom.Sel.Coef(sub1$Alt_Freq.2007,sub1$Alt_Freq.2012,g)
-sub2$nd_sel_coef_2007thru2012 <- NoDom.Sel.Coef(sub2$Ancest_Freq.2007,sub2$Ancest_Freq.2012,g)
-
-#removing the few situations where starting allele frequencies are zero, 
-#which is unrealistic and inflates s.
-sub1_nozeroes <- subset(sub1, Ancest_Freq.2007 > 0)#removes 0 samples
-sub2_nozeroes <- subset(sub2, Alt_Freq.2007 > 0)#removes 1 sample
+sub1_nozeroes <- data.frame(subset(sub1, Ancest_Freq.2007 > 0.05))
+sub2_nozeroes <- data.frame(subset(sub2, Alt_Freq.2007 > 0.05))
 
 Full_SelCoef_Hv2007thru2012 <- rbind(sub1_nozeroes, sub2_nozeroes)
+Full_SelCoef_Hv2007thru2012$q.1 <- c(sub1_nozeroes$Alt_Freq.2007, sub2_nozeroes$Ancest_Freq.2007)
+Full_SelCoef_Hv2007thru2012$q.2 <- c(sub1_nozeroes$Alt_Freq.2012, sub2_nozeroes$Ancest_Freq.2012)
 
+#starting with assumption of dominance
+Full_SelCoef_Hv2007thru2012$dom_sel_coef <- Dom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g)
+plot.Dom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g,Full_SelCoef_Hv2007thru2012$dom_sel_coef,Full_SelCoef_Hv2007thru2012)
 
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
+sd(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
 
+#No dominance
+Full_SelCoef_Hv2007thru2012$nodom_sel_coef <- NoDom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g)
+plot.NoDom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g,Full_SelCoef_Hv2007thru2012$nodom_sel_coef,Full_SelCoef_Hv2007thru2012)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
+sd(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
