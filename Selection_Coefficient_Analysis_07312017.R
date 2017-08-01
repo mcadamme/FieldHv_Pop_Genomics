@@ -5,39 +5,58 @@ library(scatterplot3d)
 
 #function for selection coefficient assuming dominance of p
 Dom.Sel.Coef = function (q.1, q.2, g) {
-  delta.q = (q.1-q.2)/g
+  delta.q = (q.2-q.1)/g
   s = (delta.q)/((q.1^2)*(q.1+delta.q-1))
 }
 
 #To plot selection coefficient assuming dominance of p
 plot.Dom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
-  delta.q = (q.1-q.2)/g
+  delta.q = (q.2-q.1)/g
   df.name <- deparse(substitute(dataframe))
   png(file = print(paste0(df.name,"Dom.png")), units = "px", height = 600, width = 900)
-  scatterplot3d(delta.q, q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
+  scatterplot3d(abs(delta.q), q.1, s, highlight.3d = TRUE, col.axis = "blue", 
                 cex = 2.5, cex.axis = 1.5, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
-                main = "Dominance of p", angle = 3, xlab = "Delta q", ylab = "", 
-                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.75))
+                main = "Dominance of p", angle = 15, xlab = "Delta q", ylab = "", 
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.5))
  dev.off()
 }
 
 #function for selection coefficient assuming no dominance of p
 NoDom.Sel.Coef = function (q.1, q.2, g) {
-  delta.q = (q.1-q.2)/g
+  delta.q = (q.2-q.1)/g
   s = (delta.q)/(q.1 *(0.5*q.1+delta.q-0.5))
 }
 
 #To plot selection coefficient assuming Co-dominance of p & q
 plot.NoDom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
-  delta.q = (q.1-q.2)/g
+  delta.q = (q.2-q.1)/g
   df.name <- deparse(substitute(dataframe))
   png(file = print(paste0(df.name,"NoDom.png")), units = "px", height = 600, width = 900)
-  scatterplot3d(delta.q, q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
-                cex = 2.5, cex.axis = 1.5, angle = 3, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
+  scatterplot3d(abs(delta.q), q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
+                cex = 2.5, cex.axis = 1.5, angle = 15, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
                 main = "Co-dominance of p and q", xlab = "Delta q", ylab = "",
-                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.75))
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.5))
   dev.off()
 }
+
+#function for selection coefficient assuming recessiveness of p
+Rec.Sel.Coef = function (q.1, q.2, g) {
+  delta.q = (q.2-q.1)/g
+  s = (delta.q)/(((-(1-q.1)^2)*q.1)+(2*q.1*(1-q.1)*delta.q)+(q.1^2*delta.q))
+}
+
+#To plot selection coefficient assuming Recessiveness of p
+plot.Rec.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
+  delta.q = (q.2-q.1)/g
+  df.name <- deparse(substitute(dataframe))
+  png(file = print(paste0(df.name,"Rec.png")), units = "px", height = 600, width = 900)
+  scatterplot3d(abs(delta.q), q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
+                cex = 2.5, cex.axis = 1.5, angle = 15, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
+                main = "Recessiveness of p", xlab = "Delta q", ylab = "",
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.8))
+  dev.off()
+}
+
 
 setwd("~/temp/bowtie_output/samtoolsANDvcftools_output/LositanReducedDataset_03292017/Allele_Frequencies_by_year")
 
@@ -100,6 +119,15 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$
 mean(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
 
+#Recessiveness of p
+Full_SelCoef_Hv1997thru2012$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g)
+plot.Rec.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g,Full_SelCoef_Hv1997thru2012$rec_sel_coef,Full_SelCoef_Hv1997thru2012)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
+sd(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
+
+
 
 ########1997thru2007
 merged_Hv1997 <- merge(sub_Hv1997thru2007, Freqs1997, by = c("Contig","StartPos"))
@@ -147,6 +175,14 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$
 mean(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
 
+#Recessiveness of p
+Full_SelCoef_Hv1997thru2007$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g)
+plot.Rec.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g,Full_SelCoef_Hv1997thru2007$rec_sel_coef,Full_SelCoef_Hv1997thru2007)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
+sd(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
+
 
 ########2007thru2012
 merged_Hv2007 <- merge(sub_Hv2007thru2012, Freqs2007, by = c("Contig","StartPos"))
@@ -191,3 +227,11 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
 sd(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
+
+#Recessiveness of p
+Full_SelCoef_Hv2007thru2012$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g)
+plot.Rec.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g,Full_SelCoef_Hv2007thru2012$rec_sel_coef,Full_SelCoef_Hv2007thru2012)
+
+#Calculating average selection coefficient and sd
+mean(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
+sd(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
