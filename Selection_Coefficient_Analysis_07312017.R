@@ -110,6 +110,8 @@ plot.Dom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
+min(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
+max(Full_SelCoef_Hv1997thru2012$dom_sel_coef)
 
 #No dominance
 Full_SelCoef_Hv1997thru2012$nodom_sel_coef <- NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g)
@@ -118,6 +120,8 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
+min(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
+max(Full_SelCoef_Hv1997thru2012$nodom_sel_coef)
 
 #Recessiveness of p
 Full_SelCoef_Hv1997thru2012$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.2,g)
@@ -126,6 +130,8 @@ plot.Rec.Sel.Coef(Full_SelCoef_Hv1997thru2012$q.1,Full_SelCoef_Hv1997thru2012$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
 sd(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
+min(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
+max(Full_SelCoef_Hv1997thru2012$rec_sel_coef)
 
 
 
@@ -165,6 +171,8 @@ plot.Dom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
+min(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
+max(Full_SelCoef_Hv1997thru2007$dom_sel_coef)
 
 
 #No dominance
@@ -174,6 +182,8 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$
 ##Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
 sd(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
+min(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
+max(Full_SelCoef_Hv1997thru2007$nodom_sel_coef)
 
 #Recessiveness of p
 Full_SelCoef_Hv1997thru2007$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.2,g)
@@ -182,6 +192,8 @@ plot.Rec.Sel.Coef(Full_SelCoef_Hv1997thru2007$q.1,Full_SelCoef_Hv1997thru2007$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
 sd(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
+min(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
+max(Full_SelCoef_Hv1997thru2007$rec_sel_coef)
 
 
 ########2007thru2012
@@ -219,6 +231,8 @@ plot.Dom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
 sd(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
+min(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
+max(Full_SelCoef_Hv2007thru2012$dom_sel_coef)
 
 #No dominance
 Full_SelCoef_Hv2007thru2012$nodom_sel_coef <- NoDom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g)
@@ -227,6 +241,8 @@ plot.NoDom.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
 sd(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
+min(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
+max(Full_SelCoef_Hv2007thru2012$nodom_sel_coef)
 
 #Recessiveness of p
 Full_SelCoef_Hv2007thru2012$rec_sel_coef <- Rec.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.2,g)
@@ -235,3 +251,5 @@ plot.Rec.Sel.Coef(Full_SelCoef_Hv2007thru2012$q.1,Full_SelCoef_Hv2007thru2012$q.
 #Calculating average selection coefficient and sd
 mean(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
 sd(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
+min(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
+max(Full_SelCoef_Hv2007thru2012$rec_sel_coef)
