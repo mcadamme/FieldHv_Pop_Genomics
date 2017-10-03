@@ -8,4 +8,5 @@ populations.sh - to get summary data from Stacks, enabling me to see which ddRAD
 shell_script_loc11322_fasta.sh - invokes stacks_to_fasta_matches.py (written by Ryan Waples) to generate a fasta file for each field-collected individual with their Stacks-generated ddRAD-seq marker genotypes at locus 11322. These fasta files were then edited by hand to include indels, remove genotypes where marker counts were low, etc.
 samtools_script.sh - convert sam files to bam files that could be fed into samtools mpileup and bcftools for SNP calling.
 vcftools_script - looking at contig-specific and genome-wide SNP changes over time.
-script_to_run_pfst - likelihood ratio test for fst significance testing.
+Used R to plot my Lositan output (see Script_to_plot_Lositan_output.R)
+Custom R script used to produce my selection coefficients and plots.
