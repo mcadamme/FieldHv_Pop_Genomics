@@ -16,22 +16,22 @@ vcftools --vcf FieldHvir.vcf --keep 2012_samples.txt --out ./contig4600_only/Fie
 vcftools --vcf FieldHvir.vcf --keep 2012_samples.txt --out ./contig4600_only/FieldHvir2012 --chr Contig4600 --minDP 3 --geno-depth
 
 #Now filtering all data
-vcftools --vcf FieldHvir.vcf --out Filtered_FieldHvir --recode --minDP 3 --maf 0.1 --max-missing 0.5 --remove-indels
+vcftools --vcf FieldHvir.vcf --out Filtered_FieldHvir03292017 --recode --thin 200 --minDP 3 --maf 0.1 --max-missing 0.5 --remove-indels
 
 #1997 samples
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --freq
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-mean-depth
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-pi
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --freq
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 1997_samples.txt --out FieldHvir1997 --site-pi
 
 #2007 samples
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --freq
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-mean-depth
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-pi
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --freq
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2007_samples.txt --out FieldHvir2007 --site-pi
 
 #2012 samples
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --freq
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-mean-depth
-vcftools --vcf Filtered_FieldHvir.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-pi
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --freq
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-mean-depth
+vcftools --vcf Filtered_FieldHvir03292017.recode.vcf --keep 2012_samples.txt --out FieldHvir2012 --site-pi
 
 
 #run of fst outlier test - per site
