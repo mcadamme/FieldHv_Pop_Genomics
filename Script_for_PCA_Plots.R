@@ -1,4 +1,4 @@
-#This is the script I used to produce my PCA to summarize genetic diversity among my populations.
+#This is the script I used to produce my PCA to summarize genetic diversity among my populations but these plots did not go into published version of manuscript.
 
 library(adegenet)
 
