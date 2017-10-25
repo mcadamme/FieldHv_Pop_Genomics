@@ -17,25 +17,25 @@ plot.Dom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
   scatterplot3d(abs(delta.q), q.1, s, highlight.3d = TRUE, col.axis = "blue", 
                 cex = 2.5, cex.axis = 1.5, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
                 main = "Dominance of p", angle = 15, xlab = "Delta q", ylab = "", 
-                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.5))
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.8),xlim = c(0,0.025))
  dev.off()
 }
 
-#function for selection coefficient assuming no dominance of p
+#function for selection coefficient assuming incomplete dominance (or no dominance) of p
 NoDom.Sel.Coef = function (q.1, q.2, g) {
   delta.q = (q.2-q.1)/g
   s = (delta.q)/(q.1 *(0.5*q.1+delta.q-0.5))
 }
 
-#To plot selection coefficient assuming Co-dominance of p & q
+#To plot selection coefficient assuming incomplete dominance of p
 plot.NoDom.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
   delta.q = (q.2-q.1)/g
   df.name <- deparse(substitute(dataframe))
   png(file = print(paste0(df.name,"NoDom.png")), units = "px", height = 600, width = 900)
   scatterplot3d(abs(delta.q), q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
                 cex = 2.5, cex.axis = 1.5, angle = 15, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
-                main = "Co-dominance of p and q", xlab = "Delta q", ylab = "",
-                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.5))
+                main = "Incomplete Dominance of p", xlab = "Delta q", ylab = "",
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.8), xlim = c(0,0.025))
   dev.off()
 }
 
@@ -53,7 +53,7 @@ plot.Rec.Sel.Coef = function(q.1, q.2, g, s, dataframe) {
   scatterplot3d(abs(delta.q), q.1, abs(s),highlight.3d = TRUE, col.axis = "blue", 
                 cex = 2.5, cex.axis = 1.5, angle = 15, cex.lab = 2, cex.main = 2, col.grid = "lightblue", 
                 main = "Recessiveness of p", xlab = "Delta q", ylab = "",
-                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.8))
+                zlab = "Selection Coefficient", pch = 20, zlim = c(0,.8),xlim = c(0,0.025))
   dev.off()
 }
 
